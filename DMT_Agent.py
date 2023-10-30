@@ -2,25 +2,25 @@ import psutil
 import matplotlib.pyplot as plt
 import time
 
-# CPU 사용량 모니터링 
-def monito_cpu(interval):
+# CPU 사용량 모니터링
+def monitor_cpu(interval):
     cpu_percentages = []
     timestamps = []
-    
+
     while True:
         cpu_percent = psutil.cpu_percent()
         timestamp = time.time()
-        
+
         cpu_percentages.append(cpu_percent)
         timestamps.append(timestamp)
-        
+
         plt.plot(timestamps, cpu_percentages)
-        plt.xlable("Time")
-        plt.ylabel("CPU Usage Monitor")
+        plt.xlabel("Time")
+        plt.ylabel("CPU Usage (%)")
         plt.title("CPU Usage Monitor")
         plt.grid(True)
         plt.pause(interval)
-        
+
 # 메모리 사용량 모니터링
 def monitor_memory(interval):
     memory_percentages = []
@@ -95,5 +95,3 @@ if __name__ == "__main__":
     # monitor_memory(interval)
     # monitor_disk(interval)
     # monitor_network(interval)
-
-        
