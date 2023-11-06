@@ -2,16 +2,17 @@
 FROM ubuntu:22.04
 
 # Setting Time
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+RUN apt-get install -y tzdata
 
 # Install Package
-RUN sudo apt update
-RUN sudo apt -y software-properties-common dirmngr ca-certificates apt-transport-https
-#RUN sudo apt install mariadb-server mariadb-client
+RUN apt-get update
+RUN apt-get install net-tools vim -y
 
 # Create User & Group
-#RUN adduser maria
-#RUN echo "maria:maria123" | chpasswd
+RUN adduser maria
+RUN echo "maria:maria123" | chpasswd
 
 # Create Directory
 #RUN mkdir -p /var/log/mariadb /var/run/mariadb /etc/mariadb /mariadb/download /mariadb/data/ibdata /mariadb/data/iblog /mariadb/data/binlog
@@ -25,3 +26,5 @@ RUN sudo apt -y software-properties-common dirmngr ca-certificates apt-transport
 # Chack The Mariadb
 #RUN mariadb --version
 #RUN systemctl status mariadb
+
+CMD [ "/usr/sbin/init" ]
