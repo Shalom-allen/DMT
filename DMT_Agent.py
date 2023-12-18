@@ -1,7 +1,31 @@
 import psutil
 import matplotlib.pyplot as plt
 import time
+#import pymysql
+'''
+# MARIADB 접속
+CONN = pymysql.connect(
+    host = '172.17.0.3'
+    , user = 'DMT'
+    , password = '@minsang1'
+    , db = 'MS_TEST'
+    , charset = 'utf8'
+)
 
+cursor = CONN.cursor()
+
+sql = "INSERT INTO TBL_C_MSSQL_1(SD_REGDATE, CPU_PERCENT_RATE) VALUES (%s, %s)"
+
+cursor.execute(sql,())
+
+cursor.execute(sql)
+        
+CONN.commit
+
+
+
+
+'''
 # CPU 사용량 모니터링
 def monitor_cpu(interval):
     cpu_percentages = []
@@ -92,6 +116,6 @@ if __name__ == "__main__":
     interval = 1 # 업데이트 간격 (초 단위)
 
     monitor_cpu(interval)
-    # monitor_memory(interval)
-    # monitor_disk(interval)
-    # monitor_network(interval)
+    monitor_memory(interval)
+    monitor_disk(interval)
+    monitor_network(interval)
