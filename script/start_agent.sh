@@ -8,6 +8,6 @@
 # 설명   : 에이전트 실행
 ###############################################################
 while true; do
-        bash /test/server_monitor_agent.sh
-        sleep 1;
+        bash /script/server_monitor_agent.sh
+        sleep 3;
 done
