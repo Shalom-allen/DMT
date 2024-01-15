@@ -1,10 +1,10 @@
 ﻿# 기본 드라이브 설정(Mariadb 클라이언트 있는 곳)
-cd C:
+cd C:\'Program Files'\'MariaDB 10.11'\bin\ 
 
 # CPU 사용량
 $CPU_VALUE = (Get-WmiObject win32_processor).LoadPercentage
 # CPU_날짜
-$CPU_CHECK_TIME = get-date -UFormat "%Y-%m-%d %T"
+$CPU_CHECK_TIME = get-date -UFormat "'%Y-%m-%d %T'"
 
 # 메모리 정보 불러오기
 $OPERATING_SYSTEM = Get-WmiObject win32_OperatingSystem
@@ -27,6 +27,7 @@ echo $MEMORY_TOTAL
 echo $MEMORY_FREE
 echo $MEMORY_USED
 echo $SERVER_MEMORY_USAGE
+echo $CPU_CHECK_TIME
 
-.\'Program Files'\'MariaDB 10.11'\bin\mariadb.exe -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
-
+#.\mariadb -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
+Start-Process -FilePath "C:\'Program Files'\'MariaDB 10.11'\bin\mariadb.exe" -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
