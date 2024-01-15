@@ -29,5 +29,4 @@ echo $MEMORY_USED
 echo $SERVER_MEMORY_USAGE
 echo $CPU_CHECK_TIME
 
-#.\mariadb -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
-Start-Process -FilePath "C:\'Program Files'\'MariaDB 10.11'\bin\mariadb.exe" -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
+.\mariadb -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
