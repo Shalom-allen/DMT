@@ -9,7 +9,7 @@
 ###############################################################
 
 # 비밀번호 불러오기
-N_DB_PW=$(cat /mnt/db_info.conf | grep -a -1 MONITOR_MAIN_DB_PW | cut -d '=' -f2)
+N_DB_PW=$(cat /mnt/Linux/db_info.conf | grep -a -1 MONITOR_MAIN_DB_PW | cut -d '=' -f2)
 DB_PW="${N_DB_PW:1:10}"
 
 # 서버 CPU 모니터링

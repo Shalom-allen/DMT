@@ -1,4 +1,7 @@
-﻿# 기본 드라이브 설정(Mariadb 클라이언트 있는 곳)
+﻿# DB 명기입(모니터링 서버에 있는 DB명)
+$DB_NAME = 'MY_COMPUTER'
+
+# 기본 드라이브 설정(Mariadb 클라이언트 있는 곳)
 cd C:\'Program Files'\'MariaDB 10.11'\bin\ 
 
 # CPU 사용량
@@ -22,11 +25,7 @@ $SERVER_MEMORY_USAGE = [Math]::Round(($MEMORY_TOTAL - $MEMORY_FREE) * 100 / $MEM
 # MEMORY_날짜
 $MEMORY_CHECK_TIME = get-date -UFormat "%Y-%m-%d %T"
 
-echo $CPU_VALUE
-echo $MEMORY_TOTAL
-echo $MEMORY_FREE
-echo $MEMORY_USED
-echo $SERVER_MEMORY_USAGE
-echo $CPU_CHECK_TIME
 
-.\mariadb -h 172.30.170.6 -uuaccof_monitor -p MY_COMPUTER -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
+
+# 모니터링 항목 Insert
+#.\mariadb -h 172.30.170.6 -uuaccof_monitor -p $DB_NAME -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
