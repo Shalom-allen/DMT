@@ -11,5 +11,5 @@ cd C:
 
 while (1 -eq 1) {
         . 'D:\04.study\DMT\script\Windows\server_monitor_agent.ps1'
-        #start-sleep -seconds 5
+        start-sleep -seconds 3
 }
