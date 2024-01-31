@@ -30,7 +30,19 @@ STORAGE_FREE=$(df -h | sed -n 2p | awk '{print $4}' | sed 's/G.*$//')
 SERVER_STORAGE_USAGE=$(df -h | sed -n 2p | awk '{print $5}' | sed 's/%.*$//')
 STORAGE_CHECK_TIME="'"$(date "+%F %T")"'"
 
+
+# DBMS 커넥션 모니터링
+MAX_CONNECTION=$(mariadb -uroot -p@minsang1 mysql -e "show variables like 'max_connections';" | awk '{print $2}' | sed -n 2p)
+NOW_CONNECTION=$(mariadb -uroot -p@minsang1 mysql -e "show status like 'threads_connected';" | awk '{print $2}' | sed -n 2p)
+MAX_USED_CONNECTION=$(mariadb -uroot -p@minsang1 mysql -e "show status like 'Max_used_connections';" | awk '{print $2}' | sed -n 2p)
+CONNECTION_CHECK_TIME="'"$(date "+%F %T")"'"
+
 # 모니터링값_Insert
 mariadb -u root -p$DB_PW MONITOR -e "insert into TBL_CPU_CHECK values ($CPU_CHECK_TIME,$CPU_VALUE);"
 mariadb -u root -p$DB_PW MONITOR -e "insert into TBL_MEMORY_CHECK values ($MEMORY_CHECK_TIME,$MEMORY_TOTAL,$MEMORY_USED,$MEMORY_FREE,$SERVER_MEMORY_USAGE,0,0);"
 mariadb -u root -p$DB_PW MONITOR -e "insert into TBL_STORAGE_CHECK values ($STORAGE_CHECK_TIME,'L',$STORAGE_TOTAL,$STORAGE_USED,$STORAGE_FREE,$SERVER_STORAGE_USAGE);"
+mariadb -u root -p$DB_PW MONITOR -e "insert into TBL_CONNECTION values ($CONNECTION_CHECK_TIME,$MAX_CONNECTION,$NOW_CONNECTION,$MAX_USED_CONNECTION);"
+
+
+
+
