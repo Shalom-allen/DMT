@@ -28,7 +28,7 @@ fi
 
 # 테이블구분자
 echo "==============================================================="
-echo "Table 구분자입력(DB:1, WEB:2, ADMIN:3)"
+echo "Table 구분자입력(DB:1, WEB:2"
 read DT
 echo "==============================================================="
 
@@ -38,9 +38,9 @@ if [ "$DT" -eq 1 ]; then
 elif [ "$DT" -eq 2 ]; then
 	echo "WEB 테이블 생성 작업"
 	DT="WMT"
-elif [ "$DT" -eq 3 ]; then
-	echo "ADMIN 테이블 생성 작업"
-	DT="ADM"
+#elif [ "$DT" -eq 3 ]; then
+#	echo "ADMIN 테이블 생성 작업"
+#	DT="ADM"
 else
 	echo "없는 구분자입니다. 작업 확인요망"
 	exit
