@@ -1,21 +1,19 @@
-# Install Ubuntu 22.04
-FROM ubuntu:22.04
+# 마리아디비 이미지 설치
+FROM mariadb:10.11.6
+#FROM mariadb:11.0.5
 
-# Install Package
-RUN apt-get update
-RUN apt-get install net-tools vim -y cron
+# 서버 시간 설정
+ENV TZ=Asia/Seoul
 
-# Create User & Group
-RUN adduser maria
-RUN echo "maria:maria123" | chpasswd
+# 패키지 업데이트 및 설치
+RUN apt-get update && apt-get upgrade -y \
+	&& apt-get install -y init systemd \
+	&& apt-get install -y vim curl \
+	&& apt-get install -y net-tools iputils-ping \
+	&& apt-get install -y cron
 
-# Install MariaDB 10.6.4
-RUN mkdir -p /mariadb/download
-WORKDIR /mariadb/download
-RUN wget https://downloads.mariadb.org/f/mariadb-10.11.6/bintar-linux-systemd-x86_64/mariadb-10.11.6-linux-systemd-x86_64.tar.gz
-#RUN tar -xvf mariadb-10.11.6-linux-systemd-x86_64.tar.gz -C /mariadb/download
+# 디렉토리 생성
+RUN mkdir -p /maria/backup && mkdir -p /maria
 
-# Chack The Mariadb
-#RUN mariadb --version
-
-CMD cron && /bin/bash
+# 볼륭연결
+#VOLUME ["/mnt/d/04.study/Container/maria/share"]
