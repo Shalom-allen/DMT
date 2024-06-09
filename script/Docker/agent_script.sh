@@ -89,7 +89,8 @@ echo "insert into TBL_CONNECTION values ($CONNECTION_CHECK_TIME,$MAX_CONNECTION,
 
 docker exec -d 34489ecd96d6 sh -c "mariadb -u root -p123 moni_study < /maria/backup/agent_$(date +"%G%m%d").sql"
 
-sleep 0.5
+docker exec -d 34489ecd96d6 sh -c "rm -rf /maria/backup/agent_$(date +"%G%m%d").sql"
+#sleep 0.5
 
 #모니터링값_Insert
 #docker exec -it 34489ecd96d6 sh -c "mariadb -u root -p123 moni_study -e 'insert into TBL_CPU_CHECK(ILJA, CPU_USAGE) values ($CPU_CHECK_TIME,$CPU_VALUE)'"
