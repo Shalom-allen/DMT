@@ -77,9 +77,6 @@ SERVER_STORAGE_USAGE4=$(df | sed -n '/'Y:'/p' | awk '{print $5}' | sed 's/%.*$//
 STORAGE_CHECK_TIME4="'"$(date "+%F %T")"'"
 echo "insert into TBL_STORAGE_CHECK values ($STORAGE_CHECK_TIME4,$STORAGE_NAME4,$STORAGE_TOTAL4,$STORAGE_USED4,$STORAGE_FREE4,$SERVER_STORAGE_USAGE4);" >> /mnt/d/04.study/Container/maria/share/backup/agent_$(date +"%G%m%d").sql
 
-
-
-
 # DBMS 커넥션 모니터링
 MAX_CONNECTION=$(docker exec -t 34489ecd96d6 sh -c "mariadb -uroot -p123 mysql -e 'show variables;' | grep ^max_connections | cut -c 17-10000")
 NOW_CONNECTION=$(docker exec -t 34489ecd96d6 sh -c "mariadb -uroot -p123 mysql -e 'show status;' | grep ^Threads_connected | cut -c 19-10000")
