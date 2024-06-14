@@ -1,6 +1,5 @@
 # 마리아디비 이미지 설치
-FROM mariadb:10.11.6
-#FROM mariadb:11.0.5
+FROM mariadb:lts
 
 # 서버 시간 설정
 ENV TZ=Asia/Seoul
@@ -13,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y cron
 
 # 디렉토리 생성
-RUN mkdir -p /maria/backup && mkdir -p /maria
+#RUN mkdir -p /maria/backup && mkdir -p /maria
 
 # 볼륭연결
 #VOLUME ["/mnt/d/04.study/Container/maria/share"]
